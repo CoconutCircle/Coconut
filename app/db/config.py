@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = "placement"
     POSTGRES_TEST_DB: str = "placement_test"
     SECRET_KEY: str
+    POSTGRES_URI: str
 
     @computed_field
     @property
@@ -36,7 +37,7 @@ class Settings(BaseSettings):
     @computed_field
     @property
     def SQLALCHEMY_DATABASE_URIL(self) -> PostgresDsn:
-        return "postgresql://coco_test_owner:npg_4gb6ZriRqCzJ@ep-floral-art-a10lcuzw-pooler.ap-southeast-1.aws.neon.tech/coco_test?sslmode=require"
+        return self.POSTGRES_URI
     @computed_field
     @property
     def SQLALCHEMY_DATABASE_TEST_URI(self) -> PostgresDsn:
