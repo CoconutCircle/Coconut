@@ -15,8 +15,8 @@ fileConfig(config.config_file_name)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from app.models import Base  # Import your SQLAlchemy models here
-target_metadata = Base.metadata
+from app.models import SQLModel  # Import your SQLAlchemy models here
+target_metadata = SQLModel.metadata
 
 def run_migrations_online():
     """Run migrations in 'online' mode."""

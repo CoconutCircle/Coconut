@@ -1,14 +1,23 @@
 from fastapi import FastAPI
-from app.connectors.db import create_db_and_tables
+from app.api.main import api_router
+from starlette.middleware.sessions import SessionMiddleware
+from fastapi.middleware.cors import CORSMiddleware
+from app.db.config import settings
+app = FastAPI(title="Coconut Backend")
 
-app = FastAPI(
-    title="Coconut Backend",
+app.include_router(api_router)
+# app.add_middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-@app.on_event("startup")
-async def startup_event():
-    create_db_and_tables()
-
 @app.get("/")
-def index():
-    return {"message": "Hello world!"}
+def read_root():
+    return { "server running! Go to /docs for api documentation"}
