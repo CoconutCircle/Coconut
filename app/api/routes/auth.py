@@ -6,7 +6,7 @@ from jose import jwt
 from app.api.deps import SessionDep
 from app.core.config import settings
 from app.crud import users
-from app.models import User
+from app.models.users import User
 from app.schemas.users import Token
 import google.oauth2.id_token
 from google.auth.transport import requests as google_requests

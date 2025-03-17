@@ -34,5 +34,13 @@ POSTGRES_PORT=5432
 POSTGRES_DB=
 POSTGRES_TEST_DB=
 
+FRONTEND_URL=
 SECRET_KEY=
+CLIENT_SECRET=
+CLIENT_ID=
+```
+
+## ENV EXPORT
+```bash
+export $(grep -v '^#' .env | xargs)
 ```

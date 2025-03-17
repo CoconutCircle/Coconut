@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     CLIENT_ID: str
     CLIENT_SECRET: str
-    REDIRECT_URI: str
+    FRONTEND_URL: str
     
 
     def _build_dsn(self, db_name: str, query: dict[str, str] | None = None) -> PostgresDsn:
