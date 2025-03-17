@@ -1,13 +1,18 @@
-from datetime import datetime
-from typing import Optional
-from sqlmodel import Field  , SQLModel
 
+from sqlmodel import SQLModel, Field, Session, create_engine, select
+from typing import Optional
+from pydantic import EmailStr
+import enum
+import uuid
+
+# Enum for User Roles
+class UserRoleEnum(str, enum.Enum):
+    ADMIN = "admin"
+    USER = "user"
+
+# User Model with UUID
 class User(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: Optional[str] = None
-    email: Optional[str] = Field(default=None, index=True)
-    password: str
-    created_at: Optional[datetime] = Field(default=datetime.now())
-    updated_at: Optional[datetime] = Field(default=datetime.now())
-    
-    
+    id: Optional[uuid.UUID] = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
+    name: str = Field(..., min_length=3, max_length=255, regex=r"^[a-zA-Z\s]+$")
+    email: EmailStr = Field(..., unique=True)
+    role: UserRoleEnum = Field(default=UserRoleEnum.USER)

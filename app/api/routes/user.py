@@ -5,7 +5,7 @@ import datetime
 from jose import jwt
 from app.schemas.users import UserCreate
 from app.api.deps import SessionDep
-from app.db.config import settings
+from app.core.config import settings
 from app.crud.users import create_user,get_user_by_email
 
 SECRET_KEY = settings.SECRET_KEY

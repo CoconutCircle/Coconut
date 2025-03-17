@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from app.api.main import api_router
 from starlette.middleware.sessions import SessionMiddleware
 from fastapi.middleware.cors import CORSMiddleware
-from app.db.config import settings
+from app.core.config import settings
 app = FastAPI(title="Coconut Backend")
 
 app.include_router(api_router)
