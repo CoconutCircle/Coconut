@@ -60,10 +60,11 @@ poetry-plugin-export==1.8.0
 psycopg==3.2.1
 psycopg-binary==3.2.1
 ptyprocess==0.7.0
-pyasn1==0.6.0
-pyasn1_modules==0.4.0
+pyasn1==0.4.6
+pyasn1-modules==0.4.1
+python-jose==3.4.0
 pycparser==2.22
-pydantic==2.8.2c
+pydantic==2.8.2
 pydantic-settings==2.4.0
 pydantic_core==2.20.1
 Pygments==2.18.0
@@ -71,7 +72,7 @@ pyproject_hooks==1.1.0
 pytest==8.3.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
-python-jose==3.4.0
+
 python-multipart==0.0.9
 pytz==2024.1
 PyYAML==6.0.2

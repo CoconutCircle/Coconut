@@ -2,7 +2,7 @@ from typing import Optional
 from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime 
 from app.models.users import User
-from enum import Enum
+
 
 class Token(BaseModel):
     id_token:str
@@ -16,5 +16,3 @@ class UserBase(BaseModel):
     email: EmailStr
     created_at: datetime
     profile_pic: str
-    class Config:
-        orm_mode = True
