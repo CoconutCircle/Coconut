@@ -41,12 +41,14 @@ async def auth(id_token:Token,session: SessionDep):
     try:
         id_info = google.oauth2.id_token.verify_oauth2_token(google_token, google_requests.Request(), CLIENT_ID)
         user_email = id_info.get('email')
+        user_name = id_info.get('name')
+        user_profile_pic = id_info.get('picture')
             
         
         user = users.get_user_by_email(
         session=session, email=user_email)
         if not user:
-            user = User(email=user_email)
+            user = User(email=user_email,name =user_name,profile_pic=user_profile_pic)
             session.add(user)
             session.commit()
             session.refresh(user)
@@ -54,9 +56,10 @@ async def auth(id_token:Token,session: SessionDep):
         
         access_token_expires = datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
         access_token = create_access_token(
-            data={"sub": user.inst_email, "is_onboarded": user.is_onboarded}, expires_delta=access_token_expires
+            data={"sub": user.email, "name" :user_name}, expires_delta=access_token_expires
         )
-        return {"access_token": access_token, "token_type": "bearer",  "is_onboarded":user.is_onboarded}
+        return {"access_token": access_token, "token_type": "bearer"}
     except ValueError as e:
+        print(e)
         raise HTTPException(status_code=400, detail="Invalid token")
 
