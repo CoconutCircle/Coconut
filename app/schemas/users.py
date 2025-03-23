@@ -3,21 +3,23 @@ from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime 
 
 
-class Token(BaseModel):
-    id_token:str
+from pydantic import BaseModel, EmailStr
+from typing import Optional
+
 
 class UserCreate(BaseModel):
     name: str
-    email: str
+    email: EmailStr
     profile_picture: Optional[str] = None
 
 
-class UserRead(BaseModel):
-    user_id: str
-    name: str
-    email: str
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    email: Optional[EmailStr] = None
     profile_picture: Optional[str] = None
-    created_at: datetime
 
+
+class Token(BaseModel):
+    id_token: str
 
 

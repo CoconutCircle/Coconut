@@ -23,8 +23,10 @@ def get_current_user(authorization: HTTPAuthorizationCredentials = Depends(secur
         
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email: str = payload.get("sub")
+        user_id : str = payload.get("uid")
+        
      
-        return {"email": email} # Return user email or user object if needed
+        return {"email": email,"user_id":user_id} # Return user email or user object if needed
     except JWTError:
         raise credentials_exception
     

@@ -9,7 +9,6 @@ class TripCreate(BaseModel):
     end_date: date
     location: str
     is_public: bool = False
-    created_by: str
 
 
 class TripRead(BaseModel):
