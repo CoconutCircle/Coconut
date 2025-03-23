@@ -1,18 +1,23 @@
 from typing import Optional
 from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime 
-from app.models.users import User
 
 
 class Token(BaseModel):
     id_token:str
 
-
 class UserCreate(BaseModel):
     name: str
-    email: EmailStr
-class UserBase(BaseModel):
+    email: str
+    profile_picture: Optional[str] = None
+
+
+class UserRead(BaseModel):
+    user_id: str
     name: str
-    email: EmailStr
+    email: str
+    profile_picture: Optional[str] = None
     created_at: datetime
-    profile_pic: str
+
+
+

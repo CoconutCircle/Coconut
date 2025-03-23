@@ -5,6 +5,7 @@ from app.api.deps import SessionDep
 from app.core.config import settings
 from app.crud.users import get_user_by_email
 from app.models.users import User
+from app.models.trips import Trip
 from app.api.middlewares.token_authorization import get_current_user
 
 SECRET_KEY = settings.SECRET_KEY
@@ -20,5 +21,9 @@ async def getProfile(session: SessionDep, current_user: str = Depends(get_curren
         session=session, email=current_user['email'])
     return user
     
-    
-    
+@router.get("/trips")
+async def getTrips(session: SessionDep, current_user: str = Depends(get_current_user))->list[Trip]:
+    user = get_user_by_email(
+        session=session, email=current_user['email'])
+    trips = user.trips
+    return trips

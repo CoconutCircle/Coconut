@@ -2,7 +2,7 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-from app.models import users
+from app.models import users,trips,tripdetails,tripcomms
 from app.core.config import settings
 from alembic import context
 from sqlmodel import SQLModel
