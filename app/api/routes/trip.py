@@ -17,6 +17,17 @@ router = APIRouter()
 
 @router.post("/")
 def create_Trip(*,session: SessionDep,current_user: str = Depends(get_current_user),trip_create : TripCreate )-> Trip:
+    """
+    Create a Trip.
+    
+    Args:
+        session: Database session
+        current_user: Current authenticated user from JWT token
+        trip_create: Trip creation data
+        
+    Returns:
+        Trip object with all Trip details
+    """
     try :
         return create_trip(session=session,trip_create=trip_create,created_by=current_user['user_id'])
     except Exception as e:
@@ -24,6 +35,17 @@ def create_Trip(*,session: SessionDep,current_user: str = Depends(get_current_us
 
 @router.get("/{trip_id}")
 def get_Trip(*,session: SessionDep,trip_id : str)-> Trip:
+    """
+    Get a Trip.
+    
+    Args:
+        session: Database session
+        current_user: Current authenticated user from JWT token
+        trip_create: Trip creation data
+        
+    Returns:
+        Trip object with all Trip details
+    """
     try :
         return get_trip(session=session,trip_id=trip_id)
     except Exception as e:
